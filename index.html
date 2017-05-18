@@ -24,51 +24,68 @@
 	<body>
 		<div class="reveal">
 			<div class="slides">
-				<section data-markdown>Object Oriented Javascript</section>
 				<section data-markdown>
-          What is it.  Why would you use it, when is is useful.  How do
-          you use it?  Show examples, (Animals) and work through demo.</section>
+          ## Object Oriented Programming with Javascript
+        </section>
         <section data-markdown>
-        <section data-markdown>
-          What is it?
-          The big picture behind Object Oriented Programming (OOP) is using
+          ## What is it?
+          The basic idea behind Object Oriented Programming (OOP) is using
           objects to represent real world objects inside our programs.
 
           Objects can contain information and functionality related to the
           things we're trying to model.
         </section>
         <section data-markdown>
-          Why do you want to use it?
+          ## Why do you want to use it?
 
           Objects can serve as a convienient way to serve as a blueprint and to
-          share common data and functionality.
+          share common data and functionality. You'll often see these types of
+          objects referred to as a _Class_
         </section>
         <section data-markdown>
+          In OOP, a class can _inherit_ data and attributes from another class.
+          When a class inherits from another class we call it a _Child Class_
+          and the Class that's providing the info the _Parent Class_
+
+
+          The child class will have the same properties and method available as
+          the parent class.
         </section>
-          Basics of OOP
+        <section data-markdown>
+          With most OOP, when calling a method on an object, if there is no
+          matching method, each parent class will be checked for a matching
+          method
 
-          What is an `Object`?.  An `Object` Allow us to represent the things
-          from the real world in code, and hold useful information about that
-          particular object.
-
-          Creating a basic Object.
+          class -> parent class -> parent class
+        </section>
+        <section data-markdown>
+          ## Why should you use OOP?
+          
+          Using inheritance allows us to break up or programs into smaller, more
+          managable, and testable chunks and helps to reduce duplication
+        </section>
+        <section data-markdown>
+          # OOP with Javascript
+        </section>
+        <section data-markdown>
+          Now we know a little about `Objects`, let's see how to create one with
+          Javascript
 
           ```js
             var myObject = {}
           ```
         </section>
         <section data-markdown>
-          Within our `Objects`, we have `properties` and `values`
+          Within our `Objects`, we have `properties` and `values`.
           Think of a property as a name or category for the information inside
           of `value`. We create our properties like:
           
           ```js
-            myObject = {
+            var myObject = {
               myFirstProperty: "first property value",
               mySecodProperty: "second property value"
             }
           ```
-        <!-- Slide 4 -->
         </section>
         <section data-markdown>
           Generic examples are boring, so let's create an `Object` with some
@@ -81,52 +98,61 @@
             location: 'Denver, CO'
           }
           ```
-          To access the value of a property of an `Object`, we just need to
-
-
-          we can use either _Dot Notation_ or _Bracket Notation_
-          (Dot Notation: `object.propertyName` Bracket Notation:
-          `object["propertyName"]`)
-          call the property name on the Object
-          (syntax highlighting looks like shit)
-
-          ```  
-            > cody.age
-            31
-            > cody.profession
-            'Sofware Developer'
-          ```
-
-            
-        <!--     "Does it make sense to talk about a console and trying to run -->
-        <!--     commands and things like that while i'm programming?  They may not -->
-        <!--     have even seen node yet." -->
         </section>
         <section data-markdown>
-          So far, we've beeen creating our objects using the _object literal
-          notation_.  
+          To get the value of a property of an `Object`,
+          we can use either _Dot Notation_ or _Bracket Notation_
+          
+          Dot Notation:     **`object.propertyName`**
 
-          We can also use what's called a _constructor_.  To create a new object
-          using a _constructor_  The example from above can be created with a
-          constructor like 
+          Bracket Notation:     **`object["propertyName"]`**
+          
+          <!-- call the property name on the Object -->
+          <!-- (syntax highlighting looks like shit) -->
+        </section>
+        <section data-markdown>
+          ### Using dot and bracket notation:
+          ```js
+            cody.age
+            31
+            cody["age"]
+            31
+            cody.profession
+            'Sofware Developer'
+            cody["profession"]
+            'Software Developer'
+          ```
+        </section>
+        <section data-markdown>
+          So far, we've beeen creating our objects using the **object literal
+          notation**.
+
+          We can also use what's called a **constructor**. 
+
+          To create the same example from above, we can create a new Object
+          using the new operator and the Object constructor
 
           ```js
           var cody = new Object();
           cody.age = 31
+          cody.age
+          31
           cody.profession = "Software Developer"
+          cody.profession
+          'Software Developer'
           ```
         </section>
         <section data-markdown>
-          In the previous example, we used a built in constructor called `Object`
-          This creates a new object with no properties or methods.  We had
-          to set our properties one at a time.
+          In the previous example we used a built in constructor called `Object`
+          This creates a new object with no properties or methods. 
+          and set our properties one at a time.
 
-          ```js
-            var emptyObject = new Object();
-            Object.getOwnPropertyNames(emptyObject);
-            (this might be too much?)
-            []
-          ```
+          <!-- ```js -->
+          <!--   var emptyObject = new Object(); -->
+          <!--   Object.getOwnPropertyNames(emptyObject); -->
+          <!--   (this might be too much?) -->
+          <!--   [] -->
+          <!-- ``` -->
         </section>
         <section data-markdown>
           Setting these values one at a time gets old pretty quick.  Let's make
@@ -140,14 +166,15 @@
 
           var rick = new Person(53, 'Scientist')
           rick.age
-          53
+          60
           rick.profession
           'Scientist'
           ```
         </section>
         <section data-markdown>
-          We dont have to rely on the values passed to the constructor, meaning
-          we can set a default value for each new Object we create with our
+          We dont have to rely only on the values passed to the constructor
+          
+          We can also set a default value for each new Object that is created with our
           constructor
 
           ```js
