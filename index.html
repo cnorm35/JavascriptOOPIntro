@@ -25,13 +25,26 @@
 		<div class="reveal">
 			<div class="slides">
 				<section data-markdown>Object Oriented Javascript</section>
-        <!-- Slide 1 -->
 				<section data-markdown>
-        <!-- Slide 2 -->
           What is it.  Why would you use it, when is is useful.  How do
           you use it?  Show examples, (Animals) and work through demo.</section>
         <section data-markdown>
-        <!-- Slide 3 -->
+        <section data-markdown>
+          What is it?
+          The big picture behind Object Oriented Programming (OOP) is using
+          objects to represent real world objects inside our programs.
+
+          Objects can contain information and functionality related to the
+          things we're trying to model.
+        </section>
+        <section data-markdown>
+          Why do you want to use it?
+
+          Objects can serve as a convienient way to serve as a blueprint and to
+          share common data and functionality.
+        </section>
+        <section data-markdown>
+        </section>
           Basics of OOP
 
           What is an `Object`?.  An `Object` Allow us to represent the things
@@ -69,7 +82,11 @@
           }
           ```
           To access the value of a property of an `Object`, we just need to
-          (you can also call it like object["propertyName"])
+
+
+          we can use either _Dot Notation_ or _Bracket Notation_
+          (Dot Notation: `object.propertyName` Bracket Notation:
+          `object["propertyName"]`)
           call the property name on the Object
           (syntax highlighting looks like shit)
 
@@ -155,16 +172,120 @@
         </section>
         <section data-markdown>
           ```js
-          function Person(age, profession) {
+          function Person(name, age, profession) {
+            this.name = name;
             this.age = age;
             this.profession = profession;
             this.school = "Turing School of Software and Design"
             this.bio = function() {
-              return "My name is " + this.name + " and I am " + this.age + "
-              years old".  Right now I am a " + this.profession + ". I'm
-              currently studying at " + this.school
+              console.log("My name is " + this.name + " and I am " + this.age + "
+              years old.  Right now I am a " + this.profession + ". I'm
+              currently studying at " + this.school)
             }
           }
+
+          ```
+        </section>
+        <section data-markdown>
+          ```js
+            var me = new Person("cody", 31, "software developer");
+            // since we're calling a method, instead of retuning the value of a
+            // property, don't forget to add the brackets to your method name
+            me.bio();
+            > "My name is cody and I am 31 years old.  
+            Right now I am a software developer.
+            I'm currently studying at Turing School of Software and Design
+          ```
+        </section>
+        <section data-markdown>
+          Objects are just another _type_ in Javascript the same way that
+          Arrays, and Strings are.  Lets see what creating an Array filled with
+          Objects looks like
+        </section>
+        <section data-markdown>
+          var secondShift = new Array();
+          var firstPerson = new Person("Mark", 25, "Accountant");
+          var secondPerson = new Person("John", 28, "Real Estate Agent");
+          var thirdPerson = new Person("David", 30, "Loan Officer")
+          
+          secondShift.push(firstPerson, secondPerson, thirdPerson)
+          Let's take a look at our array filled with Person objects...
+          for(i=0; i < secondShift.length, i++) {
+            console.log(secondShift[i])
+          }
+          
+        </section>
+        <section data-markdown>
+          Since Objects are just another _type_ we can also use them as
+          parameters for our functions
+
+
+          ```js
+            var sortPersonNames = function(person1, person2) {
+              var names = [person1.name, person2.name]
+              var sortedNames = names.sort();
+              console.log(sortedNames[0] + " is first in alphabetical order")
+            }
+          ```
+        </section>
+        <section data-markdown>
+          Each one of the constructors we've created holds the data and methods
+          available to objects created from that constructor.  In OOP, this is
+          what we call a _Class_ .  When we created a constructor, we're
+          creating a _prototype_ in Javascript.  Think of the prototype as the
+          blueprint we use to create Objects.
+
+          Take a look at how we can define methods on Objects
+          ```js
+          firstPerson.upperCaseName = function(){
+            console.log(this.name.toUpperCase());
+          }
+
+          if we try to call the method we just created on another object created
+          from our Person prototype, we'll get an error saying the function
+          isn't defined.  
+
+          This is pretty inconvientnent (<------ not even close) and causes a
+        lot of duplication in our code.  
+          ```
+        </section>
+        <section data-markdown>
+          It doesn't have to be this way.  We can define methods on our
+          _prototype_ that will be available to all objects created with the
+          prototype.  
+
+          ```js
+            Person.prototype.upperCaseName = function() {
+              console.log(this.name.toUpperCase());
+            }
+          ```
+
+          Now, all objects already created, and all objects that will be created
+          in the future from our Person class will have the
+          `upperCaseName` method available to them.
+        </section>
+        <section data-markdown>
+          What if we want to create a more specific example of a person, like a
+          student, or an instructor?
+
+          We can create the object in the same way we have for all objects
+          before by typing out all the properties and values or adding new
+          properties or methods with the `prototype` method (is this a method or
+          function?)
+
+          In our case, the Student object we want to create will need all the
+          properties and methods our Person class has, plus a couple extra that
+          are unique to the student.  Lucikly, our Student Object can _inherit_
+          all the properties and methods from our Person class.
+        </section> 
+        <section data-markdown>
+          ```js
+          function Student() {
+            this.course "Front-End"
+          }
+
+          Student.prototype = new Person()
+
           ```
         </section>
 			</div>
