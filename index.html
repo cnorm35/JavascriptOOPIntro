@@ -62,7 +62,7 @@
           ## Why should you use OOP?
           
           Using inheritance allows us to break up or programs into smaller, more
-          managable, and testable chunks and helps to reduce duplication
+          managable, testable chunks and helps to reduce duplication
         </section>
         <section data-markdown>
           # OOP with Javascript
@@ -144,6 +144,7 @@
         </section>
         <section data-markdown>
           In the previous example we used a built in constructor called `Object`
+          that Javascript provides us.
           This creates a new object with no properties or methods. 
           and set our properties one at a time.
 
@@ -164,7 +165,7 @@
             this.profession = profession;
           }
 
-          var rick = new Person(53, 'Scientist')
+          var rick = new Person(60, 'Scientist')
           rick.age
           60
           rick.profession
@@ -190,14 +191,19 @@
           ```
         </section>
         <section data-markdown>
-          Now, we're starting seeing the benefits ot Object Oriented
-          Programming.  We're creating a default value we dont have to worry
-          about setting across all of our objects.  We're not just limited to
+          We're starting seeing the benefits ot Object Oriented
+          Programming.  
+          
+          We're creating a default value we dont have to worry
+          about setting across all of our objects.  
+          
+          We're not just limited to
           setting values for properties, we can also create methods in our
           constructor that will be available in new objects created from the
           constructor.
         </section>
         <section data-markdown>
+          Constructor with method:
           ```js
           function Person(name, age, profession) {
             this.name = name;
@@ -220,8 +226,8 @@
             // property, don't forget to add the brackets to your method name
             me.bio();
             > "My name is cody and I am 31 years old.  
-            Right now I am a software developer.
-            I'm currently studying at Turing School of Software and Design
+            Right now I am a software developer. I'm currently studying at 
+            Turing School of Software and Design
           ```
         </section>
         <section data-markdown>
@@ -230,16 +236,21 @@
           Objects looks like
         </section>
         <section data-markdown>
+          ```js
           var secondShift = new Array();
           var firstPerson = new Person("Mark", 25, "Accountant");
           var secondPerson = new Person("John", 28, "Real Estate Agent");
           var thirdPerson = new Person("David", 30, "Loan Officer")
           
           secondShift.push(firstPerson, secondPerson, thirdPerson)
+          ```
+
           Let's take a look at our array filled with Person objects...
+          ```js
           for(i=0; i < secondShift.length, i++) {
             console.log(secondShift[i])
           }
+          ```
           
         </section>
         <section data-markdown>
@@ -261,20 +272,21 @@
           what we call a _Class_ .  When we created a constructor, we're
           creating a _prototype_ in Javascript.  Think of the prototype as the
           blueprint we use to create Objects.
+        </section>
+        <section data-markdown>
+          Take a look at how we can define methods on an Object we've created
 
-          Take a look at how we can define methods on Objects
           ```js
           firstPerson.upperCaseName = function(){
             console.log(this.name.toUpperCase());
           }
+          ```
 
           if we try to call the method we just created on another object created
           from our Person prototype, we'll get an error saying the function
           isn't defined.  
 
-          This is pretty inconvientnent (<------ not even close) and causes a
-        lot of duplication in our code.  
-          ```
+          This is pretty inconvenient and causes a lot of duplication in our code.  
         </section>
         <section data-markdown>
           It doesn't have to be this way.  We can define methods on our
@@ -292,29 +304,38 @@
           `upperCaseName` method available to them.
         </section>
         <section data-markdown>
-          What if we want to create a more specific example of a person, like a
-          student, or an instructor?
+          Now it's your turn to create some Javascript Objects!
 
-          We can create the object in the same way we have for all objects
-          before by typing out all the properties and values or adding new
-          properties or methods with the `prototype` method (is this a method or
-          function?)
+          Head
+          [here](https://gist.github.com/cnorm35/58b50497298d16a2c168e9e035bfbb7d)
 
-          In our case, the Student object we want to create will need all the
-          properties and methods our Person class has, plus a couple extra that
-          are unique to the student.  Lucikly, our Student Object can _inherit_
-          all the properties and methods from our Person class.
-        </section> 
-        <section data-markdown>
-          ```js
-          function Student() {
-            this.course "Front-End"
-          }
-
-          Student.prototype = new Person()
-
-          ```
+          Or go to https://gist.github.com/cnorm35  and look for the gist titled
+          `oop.txt` for instructions
         </section>
+        <!-- <section data-markdown> -->
+        <!--   What if we want to create a more specific example of a person, like a -->
+        <!--   student, or an instructor? -->
+
+        <!--   We can create the object in the same way we have for all objects -->
+        <!--   before by typing out all the properties and values or adding new -->
+        <!--   properties or methods with the `prototype` method (is this a method or -->
+        <!--   function?) -->
+
+        <!--   In our case, the Student object we want to create will need all the -->
+        <!--   properties and methods our Person class has, plus a couple extra that -->
+        <!--   are unique to the student.  Lucikly, our Student Object can _inherit_ -->
+        <!--   all the properties and methods from our Person class. -->
+        <!-- </section> --> 
+        <!-- <section data-markdown> -->
+        <!--   ```js -->
+        <!--   function Student() { -->
+        <!--     this.course "Front-End" -->
+        <!--   } -->
+
+        <!--   Student.prototype = new Person() -->
+
+        <!--   ``` -->
+        <!-- </section> -->
 			</div>
 		</div>
 
